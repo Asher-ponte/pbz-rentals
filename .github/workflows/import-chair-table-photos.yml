@@ -1,0 +1,60 @@
+name: Import chair and table photo chunks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/import-chair-table-photos.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import-chair-table-photos
+  cancel-in-progress: true
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Download, verify, and commit photo chunks
+        env:
+          ARCHIVE_SHA256: 52b4ba7964fee2c05c71500cc243ad80b3af3398cb759173e659ba38a237ad4e
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/chunks
+          curl -fsSL -o /tmp/chunks.tgz https://litter.catbox.moe/c09z33.gz
+          echo "$ARCHIVE_SHA256  /tmp/chunks.tgz" | sha256sum -c -
+          tar -C /tmp/chunks -xzf /tmp/chunks.tgz
+          python3 - <<'PY'
+          import hashlib, pathlib
+          expected = {
+            "chairs-uratex.b64.p1": "047194f610febacef23d978e52d8ae916c763c41a5a883aef415a80e55613cdb",
+            "chairs-uratex.b64.p2": "197bfb1823a0fba9e877b808bf13b0579423f5266a9c93f2626e7b0296458bd8",
+            "chairs-uratex.b64.p3": "b0f087f246745d9c614067e81ac651da22ee75340a0f24f7753aad3a176a1d99",
+            "tables-lifetime.b64.p1": "691857d151a178559b080d0b55581e8c3ea8c7db5d4d5fa4e6e6ab5fce1ad5aa",
+            "tables-lifetime.b64.p2": "16a2503011d9cb4d8fd8fe515a5d0d0cba38bf02ef5fb1a32e5e767f5a516240",
+            "tables-lifetime.b64.p3": "64780d04ff8a5a5cbc30654664efb9bbc59b727d0e635425f6f620e09a3133a2",
+            "tables-chairs-banner.b64.p1": "da5e47e213beac034d8de9b6e5f963a6d75a2efdd6c29952cd8651f934503cdf",
+            "tables-chairs-banner.b64.p2": "a38697b021b2379e9604ac92bf98aedacf14cb65f4f4f11fffee0e13b067e343",
+          }
+          root = pathlib.Path("/tmp/chunks")
+          for name, digest in expected.items():
+            got = hashlib.sha256((root / name).read_bytes()).hexdigest()
+            if got != digest:
+              raise SystemExit(f"checksum mismatch for {name}: {got}")
+          print("all chunk checksums ok")
+          PY
+          mkdir -p scripts/photos
+          cp /tmp/chunks/chairs-uratex.b64.p1 /tmp/chunks/chairs-uratex.b64.p2 /tmp/chunks/chairs-uratex.b64.p3 /tmp/chunks/tables-lifetime.b64.p1 /tmp/chunks/tables-lifetime.b64.p2 /tmp/chunks/tables-lifetime.b64.p3 /tmp/chunks/tables-chairs-banner.b64.p1 /tmp/chunks/tables-chairs-banner.b64.p2 scripts/photos/
+          rm -f .github/workflows/import-chair-table-photos.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/photos/chairs-uratex.b64.p1 scripts/photos/chairs-uratex.b64.p2 scripts/photos/chairs-uratex.b64.p3 scripts/photos/tables-lifetime.b64.p1 scripts/photos/tables-lifetime.b64.p2 scripts/photos/tables-lifetime.b64.p3 scripts/photos/tables-chairs-banner.b64.p1 scripts/photos/tables-chairs-banner.b64.p2
+          git add -u .github/workflows/import-chair-table-photos.yml
+          git commit -m "Add catalog photo chunks for chairs and tables"
+          git push
