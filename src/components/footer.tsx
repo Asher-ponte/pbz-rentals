@@ -49,7 +49,7 @@ export function Footer() {
             Packages
           </Link>
           <Link href="/catalog" className="block text-muted-foreground hover:text-primary">
-            Shop rentals
+            Rental Catalog
           </Link>
           <Link href="/quote" className="block text-muted-foreground hover:text-primary">
             Cart

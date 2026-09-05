@@ -20,14 +20,14 @@ export function QuoteBuilder() {
       <div className="rounded-[1.6rem] border border-dashed border-pink-200 bg-white p-8 text-center">
         <p className="font-heading text-xl font-extrabold">Your cart is empty</p>
         <p className="mt-2 text-sm text-muted-foreground">
-          Start with a ready-made package, or shop chairs, tables, and tents.
+          Start with a ready-made package, or browse the rental catalog.
         </p>
         <div className="mt-5 grid gap-2">
           <Button asChild className="h-11 rounded-full px-6 font-bold">
             <Link href="/packages">Choose a package</Link>
           </Button>
           <Button asChild variant="outline" className="h-11 rounded-full px-6 font-bold">
-            <Link href="/catalog">Shop by item</Link>
+            <Link href="/catalog">View Rental Catalog</Link>
           </Button>
         </div>
       </div>
