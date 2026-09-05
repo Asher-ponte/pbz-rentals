@@ -6,7 +6,7 @@ import { business } from "@/lib/business";
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-pink-100 bg-white pb-24 md:pb-8">
+    <footer className="mt-auto border-t border-pink-100 bg-white pb-28 md:pb-8">
       <div className="mx-auto grid w-full max-w-5xl gap-8 px-4 py-10 sm:grid-cols-2 lg:grid-cols-3">
         <div className="space-y-3">
           <Logo />
@@ -45,11 +45,14 @@ export function Footer() {
 
         <div className="space-y-2 text-sm">
           <p className="font-heading font-bold">Quick links</p>
+          <Link href="/packages" className="block text-muted-foreground hover:text-primary">
+            Packages
+          </Link>
           <Link href="/catalog" className="block text-muted-foreground hover:text-primary">
-            Rental price list
+            Shop rentals
           </Link>
           <Link href="/quote" className="block text-muted-foreground hover:text-primary">
-            Build a quote
+            Cart
           </Link>
           <Link href="/book" className="block text-muted-foreground hover:text-primary">
             Reserve a date

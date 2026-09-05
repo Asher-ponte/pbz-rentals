@@ -2,25 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, ShoppingBag } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { useQuote } from "@/components/quote-provider";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import { formatPeso } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
 const nav = [
   { href: "/", label: "Home" },
-  { href: "/catalog", label: "Price List" },
-  { href: "/quote", label: "Quote" },
+  { href: "/packages", label: "Packages" },
+  { href: "/catalog", label: "Shop" },
+  { href: "/quote", label: "Cart" },
   { href: "/book", label: "Book" },
 ];
 
@@ -53,47 +46,20 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button asChild variant="outline" className="hidden h-10 rounded-full px-3 sm:inline-flex">
-            <Link href="/quote">
+          <Button asChild variant="outline" className="h-10 rounded-full px-3">
+            <Link href="/quote" aria-label="Open cart">
               <ShoppingBag data-icon="inline-start" />
-              {count > 0 ? formatPeso(total) : "Quote"}
+              <span className="hidden sm:inline">{count > 0 ? formatPeso(total) : "Cart"}</span>
+              {count > 0 ? (
+                <span className="ml-1 inline-flex min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-[11px] font-extrabold text-primary-foreground sm:hidden">
+                  {count}
+                </span>
+              ) : null}
             </Link>
           </Button>
           <Button asChild className="hidden h-10 rounded-full px-4 md:inline-flex">
             <Link href="/book">Book now</Link>
           </Button>
-
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="size-10 rounded-full md:hidden">
-                <Menu />
-                <span className="sr-only">Open menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[86vw] max-w-sm">
-              <SheetHeader>
-                <SheetTitle className="sr-only">Menu</SheetTitle>
-                <Logo />
-              </SheetHeader>
-              <div className="flex flex-col gap-2 px-4">
-                {nav.map((item) => (
-                  <SheetClose asChild key={item.href}>
-                    <Link
-                      href={item.href}
-                      className={cn(
-                        "rounded-2xl px-4 py-3 text-base font-semibold",
-                        pathname === item.href
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-accent text-foreground",
-                      )}
-                    >
-                      {item.label}
-                    </Link>
-                  </SheetClose>
-                ))}
-              </div>
-            </SheetContent>
-          </Sheet>
         </div>
       </div>
     </header>
