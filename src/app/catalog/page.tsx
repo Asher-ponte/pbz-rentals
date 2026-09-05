@@ -5,8 +5,8 @@ import { FunnelSteps } from "@/components/funnel-steps";
 import { business } from "@/lib/business";
 
 export const metadata: Metadata = {
-  title: "Shop rentals",
-  description: `Shop published chair, table, and tent rates from ${business.shortName} in ${business.city}.`,
+  title: "Rental Catalog",
+  description: `Browse published chair, table, and tent rates from ${business.shortName} in ${business.city}.`,
 };
 
 export default function CatalogPage() {
@@ -14,10 +14,10 @@ export default function CatalogPage() {
     <main className="mx-auto w-full max-w-5xl px-4 py-8">
       <FunnelSteps current={1} />
       <p className="text-xs font-bold tracking-[0.2em] text-primary uppercase">
-        Step 1 · Shop
+        Step 1 · Catalog
       </p>
       <h1 className="mt-2 text-balance font-heading text-4xl font-extrabold tracking-tight">
-        Shop by Item
+        Rental Catalog
       </h1>
       <p className="mt-3 max-w-xl text-pretty text-base leading-7 text-muted-foreground">
         Add quantities and extras, then open your cart. Prefer a ready-made set?

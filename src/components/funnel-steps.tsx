@@ -9,7 +9,7 @@ const steps = [
 
 export function FunnelSteps({ current }: { current: 1 | 2 | 3 }) {
   return (
-    <ol className="mb-6 grid grid-cols-3 gap-2">
+    <ol className="mb-4 grid grid-cols-3 gap-2">
       {steps.map((step, index) => {
         const done = current > step.id;
         const active = current === step.id;
