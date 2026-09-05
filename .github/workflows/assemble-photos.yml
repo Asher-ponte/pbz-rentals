@@ -1,0 +1,37 @@
+name: assemble-photo-chunks
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - scripts/photos/.staging/**
+      - .github/workflows/assemble-photos.yml
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Concatenate staged parts
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          staging = Path('scripts/photos/.staging')
+          groups = {}
+          for p in sorted(staging.glob('*.part*')):
+              stem = p.name.rsplit('.part', 1)[0]
+              groups.setdefault(stem, []).append(p)
+          for stem, parts in groups.items():
+              dest = Path('scripts/photos') / stem
+              dest.write_bytes(b''.join(x.read_bytes() for x in parts))
+              print(stem, dest.stat().st_size)
+          PY
+      - name: Commit assembled files
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add scripts/photos/*.b64.p*
+          git rm -r --ignore-unmatch scripts/photos/.staging || true
+          git rm --ignore-unmatch .github/workflows/assemble-photos.yml || true
+          git commit -m "Add free delivery photo chunks" || exit 0
+          git push
