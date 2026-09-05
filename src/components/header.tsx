@@ -52,7 +52,7 @@ export function Header() {
             variant="outline"
             className="h-11 min-h-11 rounded-full px-3.5 md:hidden"
           >
-            <a href={`tel:${business.phones[0].tel`}>
+            <a href={`tel:${business.phones[0].tel}`}>
               <Phone data-icon="inline-start" aria-hidden="true" />
               Call
             </a>
