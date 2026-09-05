@@ -1,8 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { Check } from "lucide-react";
-import { ProductArt } from "@/components/product-art";
 import { QtyStepper } from "@/components/qty-stepper";
 import { useQuote } from "@/components/quote-provider";
 import { Badge } from "@/components/ui/badge";
@@ -34,7 +34,15 @@ export function ProductCard({ item }: { item: CatalogItem }) {
 
   return (
     <article className="overflow-hidden rounded-[1.6rem] border border-pink-100 bg-white shadow-[0_10px_30px_-20px_rgba(219,39,119,0.45)]">
-      <ProductArt category={item.category} className="h-36 w-full" />
+      <div className="relative aspect-[4/3] bg-[#1c1416]">
+        <Image
+          src={item.image}
+          alt={`${item.name} from PBZ Rentals`}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover"
+        />
+      </div>
       <div className="space-y-4 p-4">
         <div className="flex items-start justify-between gap-3">
           <div>

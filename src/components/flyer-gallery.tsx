@@ -1,5 +1,16 @@
 import Image from "next/image";
 
+const flyers = [
+  {
+    src: "/feedback/product-lineup.jpg",
+    alt: "PBZ Rentals flyer for Uratex chairs, Lifetime tables, and retractable tents",
+  },
+  {
+    src: "/feedback/free-delivery.jpg",
+    alt: "PBZ Rentals flyer for free delivery within Dita, Santa Rosa",
+  },
+];
+
 export function FlyerGallery() {
   return (
     <section className="mx-auto w-full max-w-5xl px-4 py-10">
@@ -14,26 +25,21 @@ export function FlyerGallery() {
         tables from ₱140, and tents from ₱300.
       </p>
       <div className="mt-5 grid gap-4 md:grid-cols-2">
-        <figure className="overflow-hidden rounded-[1.6rem] border border-pink-100 bg-white">
-          <Image
-            src="/images/flyer-promo.jpg"
-            alt="PBZ Rentals Facebook promo for BER months celebrations"
-            width={1200}
-            height={1500}
-            className="h-auto w-full object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        </figure>
-        <figure className="overflow-hidden rounded-[1.6rem] border border-pink-100 bg-white">
-          <Image
-            src="/images/flyer-pricelist.jpg"
-            alt="PBZ Tables and Chairs Rental price list flyer"
-            width={1200}
-            height={1500}
-            className="h-auto w-full object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        </figure>
+        {flyers.map((flyer) => (
+          <figure
+            key={flyer.src}
+            className="overflow-hidden rounded-[1.6rem] border border-pink-100 bg-white"
+          >
+            <Image
+              src={flyer.src}
+              alt={flyer.alt}
+              width={1200}
+              height={1500}
+              className="h-auto w-full object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </figure>
+        ))}
       </div>
     </section>
   );

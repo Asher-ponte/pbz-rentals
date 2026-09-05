@@ -17,6 +17,7 @@ export type CatalogItem = {
   capacity?: string;
   size?: string;
   description: string;
+  image: string;
   addons: Addon[];
 };
 
@@ -25,6 +26,7 @@ export type PackageDeal = {
   name: string;
   guests: string;
   description: string;
+  image: string;
   items: { itemId: string; qty: number; addonIds?: string[] }[];
 };
 
@@ -37,6 +39,7 @@ export const catalog: CatalogItem[] = [
     price: 15,
     unit: "pc",
     description: "Sturdy white monoblock chairs — clean, stackable, and ready for any event.",
+    image: "/catalog/chairs-uratex.jpg",
     addons: [
       { id: "chair-cover", name: "Chair Cover", price: 15 },
       { id: "chair-ribbon", name: "Chair Ribbon", price: 10 },
@@ -52,6 +55,7 @@ export const catalog: CatalogItem[] = [
     capacity: "4 to 6 pax",
     size: "4 ft",
     description: "Compact Lifetime foldable table, perfect for smaller groups and kids’ parties.",
+    image: "/catalog/tables-lifetime.jpg",
     addons: [
       { id: "cover-4ft", name: "4ft Table Cover", price: 40 },
       { id: "runner", name: "Tabletop Runner", price: 15 },
@@ -68,6 +72,7 @@ export const catalog: CatalogItem[] = [
     capacity: "6 to 8 pax",
     size: "6 ft",
     description: "Full-size Lifetime foldable table for family gatherings and receptions.",
+    image: "/catalog/tables-chairs-banner.jpg",
     addons: [
       { id: "cover-6ft", name: "6ft Table Cover", price: 50 },
       { id: "runner", name: "Tabletop Runner", price: 15 },
@@ -82,6 +87,7 @@ export const catalog: CatalogItem[] = [
     unit: "pc",
     size: "2 × 2 m (6.5 ft × 6.5 ft)",
     description: "Blue canopy tent for food stations, registration, or compact outdoor shade.",
+    image: "/catalog/tent-2x2.jpg",
     addons: [],
   },
   {
@@ -92,6 +98,7 @@ export const catalog: CatalogItem[] = [
     unit: "pc",
     size: "3 × 3 m (10 ft × 10 ft)",
     description: "Our most popular tent size — roomy enough for tables and guests.",
+    image: "/catalog/tent-3x3.jpg",
     addons: [],
   },
   {
@@ -102,6 +109,7 @@ export const catalog: CatalogItem[] = [
     unit: "pc",
     size: "3 × 4.5 m (10 ft × 15 ft)",
     description: "Extra-wide canopy for bigger celebrations and buffet setups.",
+    image: "/catalog/tent-3x45.jpg",
     addons: [],
   },
 ];
@@ -112,6 +120,7 @@ export const packages: PackageDeal[] = [
     name: "Intimate Set",
     guests: "Up to 20 guests",
     description: "A starter setup for small birthdays and family lunches.",
+    image: "/catalog/chairs-uratex.jpg",
     items: [
       { itemId: "monoblock-chair", qty: 20, addonIds: ["chair-cover"] },
       { itemId: "table-4ft", qty: 4, addonIds: ["cover-4ft", "runner"] },
@@ -123,6 +132,7 @@ export const packages: PackageDeal[] = [
     name: "Celebration Set",
     guests: "Up to 50 guests",
     description: "The BER months favorite for debuts, baptisms, and backyard parties.",
+    image: "/catalog/tent-3x3.jpg",
     items: [
       { itemId: "monoblock-chair", qty: 50, addonIds: ["chair-cover", "chair-ribbon"] },
       { itemId: "table-6ft", qty: 7, addonIds: ["cover-6ft", "runner", "centerpiece"] },
@@ -134,6 +144,7 @@ export const packages: PackageDeal[] = [
     name: "Grand Set",
     guests: "Up to 100 guests",
     description: "A complete outdoor layout for weddings, fiestas, and company events.",
+    image: "/catalog/tent-3x45.jpg",
     items: [
       { itemId: "monoblock-chair", qty: 100, addonIds: ["chair-cover", "chair-ribbon"] },
       { itemId: "table-6ft", qty: 13, addonIds: ["cover-6ft", "runner", "centerpiece"] },
