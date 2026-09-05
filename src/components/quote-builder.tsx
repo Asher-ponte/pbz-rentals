@@ -18,13 +18,18 @@ export function QuoteBuilder() {
   if (quote.lines.length === 0) {
     return (
       <div className="rounded-[1.6rem] border border-dashed border-pink-200 bg-white p-8 text-center">
-        <p className="font-heading text-xl font-extrabold">Your quote is empty</p>
+        <p className="font-heading text-xl font-extrabold">Your cart is empty</p>
         <p className="mt-2 text-sm text-muted-foreground">
-          Add chairs, tables, or tents from the price list to see an estimate.
+          Start with a ready-made package, or shop chairs, tables, and tents.
         </p>
-        <Button asChild className="mt-5 h-11 rounded-full px-6 font-bold">
-          <Link href="/catalog">Browse rentals</Link>
-        </Button>
+        <div className="mt-5 grid gap-2">
+          <Button asChild className="h-11 rounded-full px-6 font-bold">
+            <Link href="/packages">Choose a package</Link>
+          </Button>
+          <Button asChild variant="outline" className="h-11 rounded-full px-6 font-bold">
+            <Link href="/catalog">Shop by item</Link>
+          </Button>
+        </div>
       </div>
     );
   }
@@ -126,7 +131,7 @@ export function QuoteBuilder() {
             Clear
           </Button>
           <Button asChild className="h-11 rounded-full font-bold">
-            <Link href="/book">Book this quote</Link>
+            <Link href="/book">Continue to book</Link>
           </Button>
         </div>
       </div>

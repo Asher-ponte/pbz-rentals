@@ -153,6 +153,20 @@ export function getItem(id: string): CatalogItem | undefined {
   return catalog.find((item) => item.id === id);
 }
 
+export function packageContents(deal: PackageDeal) {
+  return deal.items.map((line) => {
+    const item = getItem(line.itemId);
+    const extras = (line.addonIds ?? [])
+      .map((addonId) => item?.addons.find((addon) => addon.id === addonId)?.name)
+      .filter((name): name is string => Boolean(name));
+    return {
+      qty: line.qty,
+      name: item?.name ?? line.itemId,
+      extras,
+    };
+  });
+}
+
 export function packageEstimate(deal: PackageDeal): number {
   return deal.items.reduce((sum, line) => {
     const item = getItem(line.itemId);

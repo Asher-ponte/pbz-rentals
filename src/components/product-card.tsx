@@ -112,12 +112,12 @@ export function ProductCard({ item }: { item: CatalogItem }) {
               className="h-11 flex-1 rounded-full text-sm font-bold"
               onClick={() => addItem(item.id, 1, pendingAddons)}
             >
-              Add to quote
+              Add to cart
             </Button>
           )}
           {line ? (
             <p className="text-sm font-bold text-foreground">
-              In quote · {line.qty} {item.unit}
+              In cart · {line.qty} {item.unit}
             </p>
           ) : null}
         </div>

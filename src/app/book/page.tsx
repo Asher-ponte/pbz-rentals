@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BookingForm } from "@/components/booking-form";
+import { FunnelSteps } from "@/components/funnel-steps";
 import { business } from "@/lib/business";
 
 export const metadata: Metadata = {
@@ -10,15 +11,15 @@ export const metadata: Metadata = {
 export default function BookPage() {
   return (
     <main className="mx-auto w-full max-w-xl px-4 py-8">
+      <FunnelSteps current={3} />
       <p className="text-xs font-bold tracking-[0.2em] text-primary uppercase">
-        Book now
+        Step 3 · Book
       </p>
       <h1 className="mt-2 font-heading text-4xl font-extrabold tracking-tight">
         Reserve your date
       </h1>
       <p className="mt-3 text-sm leading-6 text-muted-foreground">
-        Send your details through WhatsApp, Facebook, call, or SMS. Your quote is
-        attached automatically. Hours: {business.hours}.
+        Send your cart through WhatsApp, Facebook, call, or SMS. Hours: {business.hours}.
       </p>
       <div className="mt-6 rounded-[1.6rem] border border-pink-100 bg-white p-4 sm:p-6">
         <BookingForm />
