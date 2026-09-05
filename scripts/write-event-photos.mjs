@@ -25,13 +25,26 @@ const copies = [
   ["public/catalog/tables-chairs-banner.jpg", "public/feedback/brand-banner.jpg"],
 ];
 
+function readBase64(sourceRel) {
+  const source = join(root, sourceRel);
+  if (existsSync(source)) {
+    return readFileSync(source, "utf8").replace(/\s+/g, "");
+  }
+  const parts = [];
+  for (let index = 1; index <= 8; index += 1) {
+    const part = `${source}.p${index}`;
+    if (!existsSync(part)) break;
+    parts.push(readFileSync(part, "utf8"));
+  }
+  return parts.join("").replace(/\s+/g, "");
+}
+
 for (const [destRel, sourceRel] of photos) {
   const dest = join(root, destRel);
-  const source = join(root, sourceRel);
+  const encoded = readBase64(sourceRel);
+  if (!encoded) continue;
   mkdirSync(dirname(dest), { recursive: true });
-  if (existsSync(source)) {
-    writeFileSync(dest, Buffer.from(readFileSync(source, "utf8"), "base64"));
-  }
+  writeFileSync(dest, Buffer.from(encoded, "base64"));
 }
 
 for (const [fromRel, toRel] of copies) {
