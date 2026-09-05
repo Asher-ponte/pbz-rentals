@@ -16,10 +16,10 @@ export default function CatalogPage() {
       <p className="text-xs font-bold tracking-[0.2em] text-primary uppercase">
         Step 1 · Shop
       </p>
-      <h1 className="mt-2 font-heading text-4xl font-extrabold tracking-tight">
-        Shop by item
+      <h1 className="mt-2 text-balance font-heading text-4xl font-extrabold tracking-tight">
+        Shop by Item
       </h1>
-      <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
+      <p className="mt-3 max-w-xl text-pretty text-base leading-7 text-muted-foreground">
         Add quantities and extras, then open your cart. Prefer a ready-made set?
         Use a package instead.
       </p>
@@ -33,7 +33,7 @@ export default function CatalogPage() {
           <Link
             key={href}
             href={href}
-            className="shrink-0 rounded-full bg-accent px-4 py-2 text-sm font-bold"
+            className="inline-flex min-h-11 shrink-0 cursor-pointer items-center rounded-full bg-white px-4 py-2 text-sm font-bold text-foreground ring-1 ring-rose-200"
           >
             {label}
           </Link>
