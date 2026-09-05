@@ -11,42 +11,50 @@ export default function HomePage() {
     <main>
       <Hero />
 
-      <section className="mx-auto w-full max-w-5xl px-4 pt-6">
+      <section className="mx-auto w-full max-w-5xl scroll-mt-20 px-4 pt-10 sm:pt-12">
         <FunnelSteps current={1} />
         <div className="mb-5">
           <p className="text-xs font-bold tracking-[0.2em] text-primary uppercase">
-            Step 1 · Choose a set
+            Step 1 · Choose a Set
           </p>
-          <h2 className="font-heading text-3xl font-extrabold tracking-tight">
-            Ready-made packages
+          <h2 className="mt-1 text-balance font-heading text-[1.65rem] font-extrabold tracking-tight sm:text-3xl">
+            Ready-Made Packages
           </h2>
-          <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">
+          <p className="mt-2 max-w-xl text-pretty text-base leading-7 text-muted-foreground">
             Fastest way to book. Tap a set, review the cart, then send your date.
             You can still add or remove items after.
           </p>
         </div>
         <PackageGrid />
-        <div className="mt-5 rounded-[1.4rem] bg-accent p-4 text-center">
-          <p className="text-sm font-semibold">Need a custom mix instead?</p>
-          <Button asChild variant="outline" className="mt-3 h-11 rounded-full px-5 font-bold">
-            <Link href="/catalog">Shop chairs, tables, and tents</Link>
+        <div className="mt-5 rounded-[1.4rem] border border-pink-100 bg-white p-5 text-center">
+          <p className="text-base font-semibold text-foreground">Need a custom mix instead?</p>
+          <Button
+            asChild
+            variant="outline"
+            className="mt-3 h-12 min-h-12 rounded-full px-5 font-bold"
+          >
+            <Link href="/catalog">Shop Chairs, Tables, and Tents</Link>
           </Button>
         </div>
       </section>
 
       <FeedbackCarousel />
 
-      <section className="mx-auto w-full max-w-5xl px-4 py-10">
-        <h2 className="mb-5 font-heading text-3xl font-extrabold tracking-tight">
-          Delivery, pickup &amp; booking
+      <section className="mx-auto w-full max-w-5xl scroll-mt-20 px-4 py-10">
+        <h2 className="mb-5 text-balance font-heading text-[1.65rem] font-extrabold tracking-tight sm:text-3xl">
+          Delivery, Pickup &amp; Booking
         </h2>
         <ServiceInfo />
-        <div className="mt-6 grid gap-2 sm:grid-cols-2">
-          <Button asChild className="h-12 rounded-full font-bold">
-            <Link href="/packages">Choose a package</Link>
+        <div className="mt-6 grid gap-3 sm:grid-cols-2">
+          <Button asChild className="h-12 min-h-12 rounded-full font-bold">
+            <Link href="/packages">Choose a Package</Link>
           </Button>
-          <Button asChild variant="outline" className="h-12 rounded-full font-bold">
-            <Link href="/book">I already know what I need</Link>
+          <Button
+            asChild
+            variant="outline"
+            className="h-12 min-h-12 rounded-full font-bold"
+          >
+            <Link href="/book">I Already Know What I Need</Link>
           </Button>
         </div>
       </section>
