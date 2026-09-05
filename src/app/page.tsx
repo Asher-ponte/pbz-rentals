@@ -21,8 +21,9 @@ export default function HomePage() {
             Ready-Made Packages
           </h2>
           <p className="mt-2 max-w-xl text-pretty text-base leading-7 text-muted-foreground">
-            Fastest way to book. Tap a set, review the cart, then send your date.
-            You can still add or remove items after.
+            The fastest way to lock your date. Tap a set for 20, 50, or 100 guests,
+            review the cart, then send the event details. You can still add or remove
+            items after.
           </p>
         </div>
         <PackageGrid />
