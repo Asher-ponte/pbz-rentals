@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FeedbackCarousel } from "@/components/feedback-carousel";
 import { FunnelSteps } from "@/components/funnel-steps";
 import { Hero } from "@/components/hero";
 import { PackageGrid } from "@/components/package-grid";
@@ -32,6 +33,8 @@ export default function HomePage() {
           </Button>
         </div>
       </section>
+
+      <FeedbackCarousel />
 
       <section className="mx-auto w-full max-w-5xl px-4 py-10">
         <h2 className="mb-5 font-heading text-3xl font-extrabold tracking-tight">

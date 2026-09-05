@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/write-brand-assets.mjs",
+    "prebuild": "node scripts/write-brand-assets.mjs && node scripts/write-event-photos.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
