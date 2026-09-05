@@ -6,7 +6,7 @@ const cards = [
   {
     icon: Truck,
     title: "Delivery & set-up",
-    body: `Free delivery within ${business.delivery.freeKm} km. Succeeding distance ${formatPeso(business.delivery.succeedingPerKm)} / km. Free set-up included.`,
+    body: `Free delivery within ${business.delivery.freeKm}\u00a0km. Succeeding distance ${formatPeso(business.delivery.succeedingPerKm)} / km. Free set-up included.`,
   },
   {
     icon: MapPin,
@@ -32,11 +32,11 @@ export function ServiceInfo() {
             className="flex gap-3 rounded-[1.4rem] border border-pink-100 bg-white p-4"
           >
             <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-              <card.icon className="size-5" />
+              <card.icon className="size-5" aria-hidden="true" />
             </div>
             <div>
               <h3 className="font-heading font-bold">{card.title}</h3>
-              <p className="mt-1 text-sm leading-6 text-muted-foreground">{card.body}</p>
+              <p className="mt-1 text-pretty text-base leading-7 text-muted-foreground">{card.body}</p>
             </div>
           </article>
         ))}

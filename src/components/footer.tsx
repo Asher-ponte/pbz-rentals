@@ -12,14 +12,14 @@ export function Footer() {
           <Logo />
           <p className="max-w-xs text-sm leading-6 text-muted-foreground">
             {business.slogan} Affordable event rentals with free setup and delivery
-            within {business.delivery.freeKm} km of Santa Rosa.
+            within {business.delivery.freeKm}&nbsp;km of Santa Rosa.
           </p>
         </div>
 
         <div className="space-y-3 text-sm">
           <p className="font-heading font-bold">Visit or message</p>
           <p className="flex items-start gap-2 text-muted-foreground">
-            <MapPin className="mt-0.5 size-4 text-primary" />
+            <MapPin className="mt-0.5 size-4 text-primary" aria-hidden="true" />
             {business.address}
           </p>
           {business.phones.map((phone) => (
@@ -28,7 +28,7 @@ export function Footer() {
               href={`tel:${phone.tel}`}
               className="flex items-center gap-2 font-medium text-foreground"
             >
-              <Phone className="size-4 text-primary" />
+              <Phone className="size-4 text-primary" aria-hidden="true" />
               {phone.display}
             </a>
           ))}

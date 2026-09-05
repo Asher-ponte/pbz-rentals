@@ -32,9 +32,10 @@ export function MobileDock() {
             <Link
               key={tab.href}
               href={tab.href}
+              aria-current={active ? "page" : undefined}
               className={cn(
-                "relative flex flex-col items-center justify-center gap-0.5 rounded-2xl py-2 text-[10px] font-bold",
-                active ? "text-primary" : "text-muted-foreground",
+                "relative flex min-h-12 cursor-pointer flex-col items-center justify-center gap-0.5 rounded-2xl py-1.5 text-[11px] font-bold focus-visible:ring-3 focus-visible:ring-ring/50",
+                active ? "text-primary" : "text-foreground/70",
               )}
             >
               <span
@@ -43,7 +44,7 @@ export function MobileDock() {
                   active && "bg-primary/10",
                 )}
               >
-                <Icon className="size-5" />
+                <Icon className="size-5" aria-hidden="true" />
                 {tab.href === "/quote" && count > 0 ? (
                   <span className="absolute -top-1 -right-1 min-w-4 rounded-full bg-primary px-1 text-[10px] leading-4 font-extrabold text-primary-foreground">
                     {count}
