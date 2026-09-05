@@ -19,7 +19,8 @@ export default function BookPage() {
         Reserve Your Date
       </h1>
       <p className="mt-3 text-pretty text-base leading-7 text-muted-foreground">
-        Send your cart through WhatsApp, Facebook, call, or SMS. Hours: {business.hours}.
+        Submit your request and we will confirm availability. Find us on Facebook:{" "}
+        {business.facebookName}. Hours: {business.hours}.
       </p>
       <div className="mt-6 rounded-[1.6rem] border border-pink-100 bg-white p-4 sm:p-6">
         <BookingForm />

@@ -57,6 +57,9 @@ export function Footer() {
           <Link href="/book" className="block text-muted-foreground hover:text-primary">
             Reserve a date
           </Link>
+          <Link href="/admin" className="block text-xs text-muted-foreground/80 hover:text-primary">
+            Staff inbox
+          </Link>
           <p className="pt-2 text-xs text-muted-foreground">
             Hours: {business.hours}. First come, first served.
           </p>

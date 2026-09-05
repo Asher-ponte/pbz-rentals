@@ -1,6 +1,6 @@
 # PBZ Tables & Chairs Rental
 
-Mobile-first booking site for **PBZ Rentals** in Dita, Santa Rosa, Laguna. Guests can browse the published price list, build a quote with add-ons and delivery, then send the reservation through WhatsApp, Facebook, call, or SMS.
+Mobile-first booking site for **PBZ Rentals** in Dita, Santa Rosa, Laguna. Guests can browse the published price list, build a quote with add-ons and delivery, then submit a booking request. Facebook is listed as the social contact. Staff can review inquiries in the mock admin inbox.
 
 ## Features
 
@@ -8,8 +8,9 @@ Mobile-first booking site for **PBZ Rentals** in Dita, Santa Rosa, Laguna. Guest
 - Add-ons: chair covers, ribbons, table covers, runners, centerpieces
 - Suggested BER months sets that pre-fill a quote from published rates
 - Delivery calculator (free within 3 km, ₱50/km after)
-- Booking form that attaches the quote to a message
-- Sticky mobile call / message / quote dock
+- Booking form that submits the quote as an inquiry
+- Mock staff inbox at `/admin` for submitted requests
+- Sticky mobile Home / Packages / Catalog / Cart / Book dock
 
 ## Local development
 
