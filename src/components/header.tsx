@@ -21,6 +21,7 @@ const nav = [
 export function Header() {
   const pathname = usePathname();
   const { count, total } = useQuote();
+  const isAdmin = pathname.startsWith("/admin");
 
   return (
     <header className="sticky top-0 z-40 border-b border-pink-100/80 bg-white/90 backdrop-blur-md">
@@ -50,7 +51,7 @@ export function Header() {
           <Button
             asChild
             variant="outline"
-            className="h-11 min-h-11 rounded-full px-3.5 md:hidden"
+            className={`h-11 min-h-11 rounded-full px-3.5 md:hidden ${isAdmin ? "hidden" : ""}`}
           >
             <a href={`tel:${business.phones[0].tel}`}>
               <Phone data-icon="inline-start" aria-hidden="true" />

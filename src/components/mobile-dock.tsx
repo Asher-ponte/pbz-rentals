@@ -18,6 +18,10 @@ export function MobileDock() {
   const pathname = usePathname();
   const { count } = useQuote();
 
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <nav
       aria-label="Primary"

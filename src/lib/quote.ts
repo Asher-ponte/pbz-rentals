@@ -168,6 +168,7 @@ export function formatQuoteMessage(
   details?: {
     name?: string;
     phone?: string;
+    facebook?: string;
     eventType?: string;
     eventDate?: string;
     venue?: string;
@@ -181,6 +182,7 @@ export function formatQuoteMessage(
 
   if (details?.name) lines.push(`Name: ${details.name}`);
   if (details?.phone) lines.push(`Phone: ${details.phone}`);
+  if (details?.facebook) lines.push(`Social: ${details.facebook}`);
   if (details?.eventType) lines.push(`Event: ${details.eventType}`);
   if (details?.eventDate) lines.push(`Date: ${details.eventDate}`);
   if (details?.venue) lines.push(`Venue: ${details.venue}`);
