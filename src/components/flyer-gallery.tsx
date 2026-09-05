@@ -15,7 +15,7 @@ export function FlyerGallery() {
   return (
     <section className="mx-auto w-full max-w-5xl px-4 py-10">
       <p className="text-xs font-bold tracking-[0.2em] text-primary uppercase">
-        From the shop
+        From the catalog
       </p>
       <h2 className="mt-2 font-heading text-3xl font-extrabold tracking-tight">
         Same rates as our flyer

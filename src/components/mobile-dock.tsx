@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CalendarCheck, Home, LayoutGrid, ShoppingBag, Store } from "lucide-react";
+import { BookOpen, CalendarCheck, Home, LayoutGrid, ShoppingBag } from "lucide-react";
 import { useQuote } from "@/components/quote-provider";
 import { cn } from "@/lib/utils";
 
 const tabs = [
   { href: "/", label: "Home", icon: Home },
   { href: "/packages", label: "Packages", icon: LayoutGrid },
-  { href: "/catalog", label: "Shop", icon: Store },
+  { href: "/catalog", label: "Catalog", icon: BookOpen },
   { href: "/quote", label: "Cart", icon: ShoppingBag },
   { href: "/book", label: "Book", icon: CalendarCheck },
 ];

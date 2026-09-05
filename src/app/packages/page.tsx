@@ -28,7 +28,7 @@ export default function PackagesPage() {
       </div>
       <div className="mt-6 text-center">
         <Button asChild variant="ghost" className="h-12 min-h-12 rounded-full font-bold">
-          <Link href="/catalog">Or shop individual items</Link>
+          <Link href="/catalog">Or view the rental catalog</Link>
         </Button>
       </div>
     </main>

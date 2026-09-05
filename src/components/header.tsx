@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 const nav = [
   { href: "/", label: "Home" },
   { href: "/packages", label: "Packages" },
-  { href: "/catalog", label: "Shop" },
+  { href: "/catalog", label: "Catalog" },
   { href: "/quote", label: "Cart" },
   { href: "/book", label: "Book" },
 ];
@@ -52,7 +52,7 @@ export function Header() {
             variant="outline"
             className="h-11 min-h-11 rounded-full px-3.5 md:hidden"
           >
-            <a href={`tel:${business.phones[0].tel}`}>
+            <a href={`tel:${business.phones[0].tel`}>
               <Phone data-icon="inline-start" aria-hidden="true" />
               Call
             </a>

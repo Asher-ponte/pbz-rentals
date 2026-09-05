@@ -11,7 +11,7 @@ export default function HomePage() {
     <main>
       <Hero />
 
-      <section className="mx-auto w-full max-w-5xl scroll-mt-20 px-4 pt-10 sm:pt-12">
+      <section className="mx-auto w-full max-w-5xl scroll-mt-20 px-4 pt-6 sm:pt-10">
         <FunnelSteps current={1} />
         <div className="mb-5">
           <p className="text-xs font-bold tracking-[0.2em] text-primary uppercase">
@@ -34,7 +34,7 @@ export default function HomePage() {
             variant="outline"
             className="mt-3 h-12 min-h-12 rounded-full px-5 font-bold"
           >
-            <Link href="/catalog">Shop Chairs, Tables, and Tents</Link>
+            <Link href="/catalog">View Rental Catalog</Link>
           </Button>
         </div>
       </section>
