@@ -25,7 +25,7 @@ export function Logo({
           <p className="font-heading text-[0.95rem] font-extrabold tracking-tight text-foreground">
             PBZ Rentals
           </p>
-          <p className="text-[11px] font-medium tracking-wide text-primary">
+          <p className="text-xs font-semibold tracking-wide text-[#9a3048]">
             Tables &amp; Chairs
           </p>
         </div>

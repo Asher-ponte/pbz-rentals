@@ -15,10 +15,10 @@ export default function BookPage() {
       <p className="text-xs font-bold tracking-[0.2em] text-primary uppercase">
         Step 3 · Book
       </p>
-      <h1 className="mt-2 font-heading text-4xl font-extrabold tracking-tight">
-        Reserve your date
+      <h1 className="mt-2 text-balance font-heading text-4xl font-extrabold tracking-tight">
+        Reserve Your Date
       </h1>
-      <p className="mt-3 text-sm leading-6 text-muted-foreground">
+      <p className="mt-3 text-pretty text-base leading-7 text-muted-foreground">
         Send your cart through WhatsApp, Facebook, call, or SMS. Hours: {business.hours}.
       </p>
       <div className="mt-6 rounded-[1.6rem] border border-pink-100 bg-white p-4 sm:p-6">

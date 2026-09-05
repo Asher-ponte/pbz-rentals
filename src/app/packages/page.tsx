@@ -16,10 +16,10 @@ export default function PackagesPage() {
       <p className="text-xs font-bold tracking-[0.2em] text-primary uppercase">
         Step 1 · Packages
       </p>
-      <h1 className="mt-2 font-heading text-4xl font-extrabold tracking-tight">
-        Pick a set
+      <h1 className="mt-2 text-balance font-heading text-4xl font-extrabold tracking-tight">
+        Pick a Set
       </h1>
-      <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
+      <p className="mt-3 max-w-xl text-pretty text-base leading-7 text-muted-foreground">
         Add a package to your cart in one tap. Quantities and add-ons can be edited
         before you book.
       </p>
@@ -27,7 +27,7 @@ export default function PackagesPage() {
         <PackageGrid />
       </div>
       <div className="mt-6 text-center">
-        <Button asChild variant="ghost" className="rounded-full font-bold">
+        <Button asChild variant="ghost" className="h-12 min-h-12 rounded-full font-bold">
           <Link href="/catalog">Or shop individual items</Link>
         </Button>
       </div>

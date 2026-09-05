@@ -28,6 +28,8 @@ export function FeedbackCarousel() {
 
   useEffect(() => {
     if (paused) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
     const timer = window.setInterval(() => {
       setIndex((current) => (current + 1) % count);
     }, INTERVAL_MS);
@@ -41,10 +43,10 @@ export function FeedbackCarousel() {
       <p className="text-xs font-bold tracking-[0.2em] text-primary uppercase">
         From our clients
       </p>
-      <h2 id="feedback-heading" className="mt-2 font-heading text-3xl font-extrabold tracking-tight">
-        Client feedback
+      <h2 id="feedback-heading" className="mt-2 text-balance font-heading text-[1.65rem] font-extrabold tracking-tight sm:text-3xl">
+        Client Feedback
       </h2>
-      <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">
+      <p className="mt-2 max-w-xl text-pretty text-base leading-7 text-muted-foreground">
         Real photos from PBZ Rentals — clean inventory, on-time delivery, and
         the same chairs, tables, and tents you can book here.
       </p>
@@ -105,18 +107,18 @@ export function FeedbackCarousel() {
         <button
           type="button"
           onClick={prev}
-          className="absolute top-1/2 left-3 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-foreground shadow-md backdrop-blur hover:bg-white"
+          className="absolute top-1/2 left-3 flex size-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white text-foreground shadow-md focus-visible:ring-3 focus-visible:ring-ring/50 hover:bg-[#fff4f7]"
           aria-label="Previous feedback photo"
         >
-          <ChevronLeft className="size-5" />
+          <ChevronLeft className="size-5" aria-hidden="true" />
         </button>
         <button
           type="button"
           onClick={next}
-          className="absolute top-1/2 right-3 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-foreground shadow-md backdrop-blur hover:bg-white"
+          className="absolute top-1/2 right-3 flex size-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white text-foreground shadow-md focus-visible:ring-3 focus-visible:ring-ring/50 hover:bg-[#fff4f7]"
           aria-label="Next feedback photo"
         >
-          <ChevronRight className="size-5" />
+          <ChevronRight className="size-5" aria-hidden="true" />
         </button>
       </div>
 
@@ -126,13 +128,17 @@ export function FeedbackCarousel() {
             key={item.src}
             type="button"
             onClick={() => goTo(slideIndex)}
-            className={cn(
-              "h-2 rounded-full transition-all",
-              slideIndex === index ? "w-7 bg-primary" : "w-2 bg-pink-200 hover:bg-pink-300",
-            )}
+            className="flex h-11 min-w-11 cursor-pointer items-center justify-center"
             aria-label={`Show ${item.caption}`}
             aria-current={slideIndex === index}
-          />
+          >
+            <span
+              className={cn(
+                "h-2 rounded-full transition-[width,background-color]",
+                slideIndex === index ? "w-7 bg-primary" : "w-2 bg-rose-300 hover:bg-rose-400",
+              )}
+            />
+          </button>
         ))}
       </div>
     </section>

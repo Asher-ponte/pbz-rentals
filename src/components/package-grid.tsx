@@ -57,13 +57,13 @@ export function PackageGrid() {
             </p>
             <p className="text-xs text-muted-foreground">Published rates · edit in cart</p>
             <Button
-              className="mt-4 h-12 rounded-full font-bold"
+              className="mt-4 h-12 min-h-12 rounded-full font-bold"
               onClick={() => {
                 addPackage(deal);
                 router.push("/quote");
               }}
             >
-              Add set to cart
+              Add Set to Cart
             </Button>
           </div>
         </article>

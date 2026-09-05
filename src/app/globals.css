@@ -60,7 +60,7 @@
   --secondary: oklch(0.95 0.03 350);
   --secondary-foreground: oklch(0.35 0.08 350);
   --muted: oklch(0.96 0.02 350);
-  --muted-foreground: oklch(0.5 0.04 350);
+  --muted-foreground: oklch(0.4 0.04 350);
   --accent: oklch(0.96 0.03 350);
   --accent-foreground: oklch(0.32 0.08 350);
   --destructive: oklch(0.577 0.245 27.325);
@@ -87,10 +87,21 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
-    @apply font-sans;
+    @apply min-h-dvh font-sans;
+  }
+  body {
+    @apply min-h-dvh bg-background text-foreground;
+    -webkit-tap-highlight-color: color-mix(in oklab, var(--primary) 18%, transparent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }

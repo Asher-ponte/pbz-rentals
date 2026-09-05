@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ShoppingBag } from "lucide-react";
+import { Phone, ShoppingBag } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { useQuote } from "@/components/quote-provider";
 import { Button } from "@/components/ui/button";
+import { business } from "@/lib/business";
 import { formatPeso } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
@@ -34,7 +35,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               className={cn(
-                "rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
+                "cursor-pointer rounded-full px-3 py-1.5 text-sm font-medium transition-colors focus-visible:ring-3 focus-visible:ring-ring/50",
                 pathname === item.href
                   ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:bg-accent hover:text-foreground",
@@ -46,19 +47,24 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button asChild variant="outline" className="h-10 rounded-full px-3">
+          <Button
+            asChild
+            variant="outline"
+            className="h-11 min-h-11 rounded-full px-3.5 md:hidden"
+          >
+            <a href={`tel:${business.phones[0].tel}`}>
+              <Phone data-icon="inline-start" aria-hidden="true" />
+              Call
+            </a>
+          </Button>
+          <Button asChild variant="outline" className="hidden h-10 rounded-full px-3 md:inline-flex">
             <Link href="/quote" aria-label="Open cart">
-              <ShoppingBag data-icon="inline-start" />
-              <span className="hidden sm:inline">{count > 0 ? formatPeso(total) : "Cart"}</span>
-              {count > 0 ? (
-                <span className="ml-1 inline-flex min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-[11px] font-extrabold text-primary-foreground sm:hidden">
-                  {count}
-                </span>
-              ) : null}
+              <ShoppingBag data-icon="inline-start" aria-hidden="true" />
+              <span>{count > 0 ? formatPeso(total) : "Cart"}</span>
             </Link>
           </Button>
           <Button asChild className="hidden h-10 rounded-full px-4 md:inline-flex">
-            <Link href="/book">Book now</Link>
+            <Link href="/book">Book Now</Link>
           </Button>
         </div>
       </div>
