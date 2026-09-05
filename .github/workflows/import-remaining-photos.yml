@@ -1,0 +1,80 @@
+name: Import remaining photo chunks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/import-remaining-photos.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import-remaining-photos
+  cancel-in-progress: true
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Download, verify, and commit photo chunks
+        env:
+          ARCHIVE_SHA256: 80c1ab3746220c21cdd2b000ee25867882582f183dc28489ec8987017dd9074c
+          PAGE_URL: https://tmpfiles.org/wuwDkLXeBau9/remaining-photo-chunks.tar.gz
+          DIRECT_URL: https://tmpfiles.org/dl/1788632602.b083ac1a4b3196eb/wuwDkLXeBau9/remaining-photo-chunks.tar.gz
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/chunks
+          if ! curl -fsSL -o /tmp/chunks.tgz "$DIRECT_URL"; then
+            python3 - <<'PY'
+          import re, urllib.request, pathlib
+          import os
+          html = urllib.request.urlopen(os.environ["PAGE_URL"]).read().decode()
+          url = re.search(r'href="(https://tmpfiles.org/dl/[^"]+)"', html).group(1)
+          pathlib.Path("/tmp/chunks.tgz").write_bytes(urllib.request.urlopen(url).read())
+          PY
+          fi
+          echo "$ARCHIVE_SHA256  /tmp/chunks.tgz" | sha256sum -c -
+          tar -C /tmp/chunks -xzf /tmp/chunks.tgz
+          python3 - <<'PY'
+          import hashlib, pathlib
+          expected = {
+            "tent-3x45.b64.p1": "5fc399402bfd2c7bf5a54b7088a65a8099f2b8607dddbf1b0736c077a4f3ca91",
+            "tent-3x45.b64.p2": "0c9ef5f44b74bb1b7634bc066b11fca178a3f146746daf20efc754db487836cd",
+            "tent-3x45.b64.p3": "2d2fc5a019e334d6af276afe240c51735ae99c8b1a95f3aeaf4386a04c5b7cdb",
+            "tent-3x45.b64.p4": "a17acd2ab84cd997d97bcb779296b54f0a59ee6c37b449fbdb7b57744eb3f93e",
+            "tent-sizes.b64.p1": "8b16f076a38d9da6ea42d95400172998878d51dd006086fb93fbcd3258cbb782",
+            "tent-sizes.b64.p2": "dd5c5f1772d5268c567f53a1de63464de68ea5dc4f19e9be5229e15e61a36c33",
+            "tent-sizes.b64.p3": "e43ad69de870c011ae61f0a0ecf32a4d73e3531f000ec5450f3c70a5b30ebbae",
+            "tent-sizes.b64.p4": "7806c041e0f221d1812beda886e6e033dcbd63f2583e24ddcadde95751dd7f77",
+            "tent-nearby.b64.p1": "139d2b6a94cdab954b31834da18c191f8a2443d7ea399c112c71ddfaddc57875",
+            "tent-nearby.b64.p2": "9383c97a486d39c31b58b6a314d1b467c0f18bfe7103447f54608c1dd1578c88",
+            "client-review.b64.p1": "def9a6b14afe973be00fcc19f81c776334a3c84bc340d1fceea3b5c1b58d554f",
+            "client-review.b64.p2": "dde896b9c2f2110c00e79aba2bbd0466ca4200bd3f741630c234926f8d3093d2",
+            "client-review.b64.p3": "50025958a09c3430e11de77df53ff1d0b910c5e74e24710db1cca04a154007fc",
+            "free-delivery.b64.p1": "d1a3ce49d6d750014ba63ceb4902c298f360dd1013435853f6e97d1bf90702c5",
+            "free-delivery.b64.p2": "38b368f3a6a048f966fefb727a82f24890a4c89dc4d536e8d2482cb690747acc",
+            "product-lineup.b64.p1": "cf90cf203213cb5873c6751fbee8e84fa1010dc2351fdb0a01e501899228a247",
+            "product-lineup.b64.p2": "ca27aedba63a39d2a99439466506a5b3141054d5981fc10221e3c510d7d75b7d",
+            "product-lineup.b64.p3": "2a6e928f766d1647a8e143a91651e4d4129791667ce2c81f6e3ce36282bf9146",
+          }
+          root = pathlib.Path("/tmp/chunks")
+          for name, digest in expected.items():
+            got = hashlib.sha256((root / name).read_bytes()).hexdigest()
+            if got != digest:
+              raise SystemExit(f"checksum mismatch for {name}: {got}")
+          print("all chunk checksums ok")
+          PY
+          mkdir -p scripts/photos
+          cp /tmp/chunks/tent-3x45.b64.p1 /tmp/chunks/tent-3x45.b64.p2 /tmp/chunks/tent-3x45.b64.p3 /tmp/chunks/tent-3x45.b64.p4 /tmp/chunks/tent-sizes.b64.p1 /tmp/chunks/tent-sizes.b64.p2 /tmp/chunks/tent-sizes.b64.p3 /tmp/chunks/tent-sizes.b64.p4 /tmp/chunks/tent-nearby.b64.p1 /tmp/chunks/tent-nearby.b64.p2 /tmp/chunks/client-review.b64.p1 /tmp/chunks/client-review.b64.p2 /tmp/chunks/client-review.b64.p3 /tmp/chunks/free-delivery.b64.p1 /tmp/chunks/free-delivery.b64.p2 /tmp/chunks/product-lineup.b64.p1 /tmp/chunks/product-lineup.b64.p2 /tmp/chunks/product-lineup.b64.p3 scripts/photos/
+          rm -f .github/workflows/import-remaining-photos.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/photos/tent-3x45.b64.p1 scripts/photos/tent-3x45.b64.p2 scripts/photos/tent-3x45.b64.p3 scripts/photos/tent-3x45.b64.p4 scripts/photos/tent-sizes.b64.p1 scripts/photos/tent-sizes.b64.p2 scripts/photos/tent-sizes.b64.p3 scripts/photos/tent-sizes.b64.p4 scripts/photos/tent-nearby.b64.p1 scripts/photos/tent-nearby.b64.p2 scripts/photos/client-review.b64.p1 scripts/photos/client-review.b64.p2 scripts/photos/client-review.b64.p3 scripts/photos/free-delivery.b64.p1 scripts/photos/free-delivery.b64.p2 scripts/photos/product-lineup.b64.p1 scripts/photos/product-lineup.b64.p2 scripts/photos/product-lineup.b64.p3
+          git add -u .github/workflows/import-remaining-photos.yml
+          git commit -m "Add remaining catalog photo chunks"
+          git push
